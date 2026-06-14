@@ -37,10 +37,11 @@ int main() {
 
             point3 center(x_pos, y_pos, z_pos);
 
-            double safety_radius = 1.3; 
+            double safety_radius = 1.5; 
             bool overlapping = ((center - big_blue_center).length() < safety_radius)  ||
                                ((center - big_metal_center).length() < safety_radius) ||
-                               ((center - big_glass_center).length() < safety_radius);
+                               ((center - big_glass_center).length() < safety_radius) ||
+                               ((center - point3(-1.5, 0.5, -3.5)).length() < safety_radius);
 
             if (!overlapping) {
                 if (choose_mat < 0.6) {
@@ -62,6 +63,10 @@ int main() {
     world.add_sphere(big_blue_center, 1.0, MaterialType::Lambertian, color(0.1, 0.2, 0.5));
     world.add_sphere(big_metal_center, 1.0, MaterialType::Metal, color(0.8, 0.6, 0.2), 0.0);
     world.add_sphere(big_glass_center, 1.0, MaterialType::Dielectric, color(1.0, 1.0, 1.0), 0.0, 1.5);
+
+    world.add_sphere(point3(0, 5.0, -5), 1.5, MaterialType::DiffuseLight, color(6.0, 6.0, 6.0)); 
+
+    world.add_box(point3(-2.0, 0.0, -3.0), point3(-1.0, 1.2, -4.0), MaterialType::Metal, color(0.9, 0.9, 0.9), 0.1);
 
     std::clog << "Building BVH acceleration tree...\n";
     world.build_bvh();
