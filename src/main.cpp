@@ -2,6 +2,7 @@
 #include "camera.h"
 #include "scene.h"
 
+#include <chrono>
 #include <fstream>
 #include <iostream>
 
@@ -86,9 +87,14 @@ int main() {
 
     cam.defocus_angle = 0.6; 
     cam.focus_dist    = 7.2;  
-
+    
+    auto start = std::chrono::high_resolution_clock::now();
     cam.render(out_file, world);
+    auto end = std::chrono::high_resolution_clock::now();
 
+    std::chrono::duration<double> elapsed = end - start;
+
+    std::cout << "\nRender completed in "<< elapsed.count()<< " seconds.\n";
     out_file.close();
     return 0;
 }
