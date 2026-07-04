@@ -6,7 +6,7 @@ This project was created as a learning exercise to understand the core concepts 
 
 The renderer outputs images in the **PPM** image format and implements several fundamental rendering techniques, including multiple material models and BVH acceleration.
 
-> **Status:** On hold. The project has achieved its primary learning goals and is not under active development. Future improvements may be added as time permits.git 
+> **Status:** On hold. The project has achieved its primary learning goals and is not under active development. Future improvements may be added as time permits.
 
 ---
 
